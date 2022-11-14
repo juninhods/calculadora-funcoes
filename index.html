@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+    <style> 
+    body{
+        font-family: monospace;
+    }
+    .container-tabela{
+        background-color: #D9D9D9;
+        width: 170px;
+        margin: 0 auto;
+        padding: 5px;
+        border: 1px solid;
+        border-radius: 5px;
+    }
+
+    .div-bhaskara{
+        background-color: #D9D9D9;
+        padding: 20px;
+       width: 593px;
+       margin: 0 auto;
+       border: 1px solid;
+       border-radius: 5px;
+    }
+
+    .div-triangulo{
+        background-color: #D9D9D9;
+        padding: 20px;
+       width: 593px;
+       margin: 10px auto;
+       border: 1px solid;
+       border-radius: 5px;
+    }
+    </style>
+</head>
+<body>
+
+    
+    <div class="container-tabela"> 
+        <h2 style="text-align: center;">Calculadora</i></h2>
+    <p id="resultado"></p>
+        <table>                 
+            <tr>
+                <td><button class="botao" onclick="limpar()">C</td>
+                <td><button class="botao" onclick="voltar()">✕</td>
+                <td><button class="botao" onclick="inserir('/')">/</button></td>
+                <td><button class="botao" onclick="inserir('*')">*</button></td>
+                <td><button style="margin-left: -25px;" class="botao" onclick="inserir('^')">^</button></td>
+
+            </tr>
+            <tr>
+                <td><button class="botao" onclick="inserir('7')">7</button></td>
+                <td><button class="botao" onclick="inserir('8')">8</button></td>
+                <td><button class="botao" onclick="inserir('9')">9</button></td>
+                <td><button class="botao" onclick="inserir('-')">-</button></td>
+                <td><button style="margin-left: -25px;" class="botao" onclick="raiz()">√</button></td>
+
+            </tr>
+            <tr>
+                <td><button class="botao" onclick="inserir('4')">4</button></td>
+                <td><button class="botao" onclick="inserir('5')">5</button></td>
+                <td><button class="botao" onclick="inserir('6')">6</button></td>
+                <td><button class="botao" onclick="inserir('+')">+</button></td>
+            </tr>
+            <tr>
+                <td><button class="botao" onclick="inserir('1')">1</button></td>
+                <td><button class="botao" onclick="inserir('2')">2</button></td>
+                <td><button class="botao" onclick="inserir('3')">3</button></td>
+
+                <td rowspan="2"><button class="botao" style="height: 106px; width: 49px" onclick="calcular()">=</button></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button class="botao" style="width: 87px;" onclick="inserir('0')">0</button></td>
+                <td><button class="botao" onclick="inserir('.')">.</button></td>
+            </tr>
+        </table>
+    </div>
+    </br> 
+    </br> 
+    </br> 
+    </br>
+
+    <div class="div-bhaskara"> 
+    <h2 style="width: 100%;
+    text-align: center;"> BHASKARA </h2> 
+    <div class="Bhaskara" style="display: flex; width: 100%; justify-content: center;"> 
+    
+      A  &nbsp;<input id="bhask1" type="text" placeholder="valor de a..." > &nbsp;
+       B &nbsp;<input id="bhask2" type="text" placeholder="valor de b..." > &nbsp;
+        C &nbsp;<input id="bhask3" type="text" placeholder="valor de c..." > &nbsp;
+
+    
+    </div>
+
+</br>
+<h3 style="width: 100%;
+        text-align: center;"> RESULTADO:  </h3>
+
+    <div style="display: flex; width: 100%; justify-content: center; gap: 17px;"> 
+
+         <input id="x1" placeholder="valor de X1" type="text" disabled>    
+         <input id="x2" placeholder="valor de X2" type="text" disabled>    
+         <button onclick="bhaskara()"> CALCULAR </button>
+    </div>
+
+</div>
+
+<div class="div-triangulo"> 
+    <h2 style="width: 100%;
+    text-align: center;"> ÁREA DO TRIÂNGULO RETÂNGULO </h2> 
+    <div class="triangulo" style="display: flex; width: 100%; justify-content: center;"> 
+    
+      BASE  &nbsp;<input id="t1" type="text" placeholder="valor da base..." > &nbsp;
+       ALTURA &nbsp;<input id="t2" type="text" placeholder="valor de altura..." > &nbsp;
+       <button onclick="triangulo()"> CALCULAR </button>
+
+    
+     
+    
+    </div>
+    <div style="margin: 0 auto; width: 100%; text-align: center;">
+        <h3> RESULTADO: <p id="resultado-triangulo"> </p> </h3>
+       </div>
+
+</body>
+</html>
+
+<script>
+/* CALCULADORA NORMAL */
+function inserir(num)
+{
+    var valor_original = document.getElementById('resultado').innerHTML;
+
+
+    document.getElementById('resultado').innerHTML = valor_original + num;
+}
+function limpar()
+{
+    document.getElementById('resultado').innerHTML = "";
+}
+function voltar()
+{   
+    var resultado = document.getElementById('resultado').innerHTML;
+    document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
+}
+function calcular()
+{
+    var resultado = document.getElementById('resultado').innerHTML;
+    if(resultado)
+    {
+        if(resultado.includes('^')){
+
+           // Math.pow(base, expoente);
+
+         let valores = document.getElementById('resultado').innerHTML;
+         valores = valores.split('^');
+
+         console.log(valores[0]);
+         console.log(valores[1]);
+         document.getElementById('resultado').innerHTML = Math.pow(valores[0], valores[1]);
+
+        } else{
+            
+            document.getElementById('resultado').innerHTML = eval(resultado);
+        }
+       
+
+
+    }
+    else
+    {
+        document.getElementById('resultado').innerHTML = "Nada..."
+    }
+}
+
+function raiz(valor){
+
+    
+    document.getElementById('resultado').innerHTML = Math.sqrt(document.getElementById('resultado').innerHTML);
+}
+
+/* CALCULO DE BHASKARA */
+
+function bhaskara(){
+    const a = document.getElementById('bhask1').value;
+    const b = document.getElementById('bhask2').value;
+    const c = document.getElementById('bhask3').value;
+    const resultado_1 = document.getElementById('x1');
+    const resultado_2 = document.getElementById('x2');
+  
+    const delta = b * b - 4 * a * c;
+
+
+
+    let numero_falso = 1;
+
+
+    if (!a || !b || !c) {
+        alert("Insira os valores de a, b e c");
+  } else if (a == 0) {
+    alert("O valor de a deve ser diferente de 0");
+  } else if (delta < 0) {
+    alert("Sem raízes reais");
+  } else {
+
+    
+    const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+    const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+
+    resultado_1.value = x1;
+    resultado_2.value = x2;
+  }
+}
+
+/** FUNÇÃO TRIANGULO
+ *  */
+
+function triangulo(){
+    const base = document.getElementById('t1').value;
+    const altura = document.getElementById('t2').value;
+
+    let resultado = (base*altura)/2; 
+
+    document.getElementById('resultado-triangulo').innerHTML = resultado;
+}
+</script>
